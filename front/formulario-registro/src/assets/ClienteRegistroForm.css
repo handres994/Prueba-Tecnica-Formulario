@@ -1,0 +1,165 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+
+:root {
+  --bg: #e3e7ee;
+  --card: #dde1e7;
+  --text: #595959;
+  --muted: #767676;
+  --accent: #3498db;
+  --shadow-in: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #ffffff73;
+  --shadow-in-focus: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #ffffff73;
+  --shadow-out: 2px 2px 5px #BABECC, -5px -5px 10px #ffffff73;
+}
+
+* { box-sizing: border-box; }
+
+.crf-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg);
+}
+
+.crf-card {
+  width: min(980px, 100%);
+  padding: 28px 22px;
+  background: var(--card);
+  border-radius: 14px;
+  box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94,104,121,0.288);
+}
+
+.crf-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: var(--text);
+}
+
+.crf-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.crf-msg {
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+.crf-msg--error { color: #7f1d1d; background: #fddede; border: 1px solid #fca5a5; }
+.crf-msg--success { color: #0f5132; background: #dcfce7; border: 1px solid #86efac; }
+
+.crf-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 780px) {
+  .crf-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.crf-field { display: block; }
+.crf-label { font-size: 14px; color: #666666; margin: 0 0 8px 10px; display: inline-block; }
+
+.crf-input {
+  width: 100%;
+  height: 50px;
+  padding: 0 18px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  background: var(--card);
+  color: var(--text);
+  border-radius: 25px;
+  box-shadow: var(--shadow-in);
+  transition: box-shadow .2s ease;
+}
+.crf-input:focus { box-shadow: var(--shadow-in-focus); }
+
+.crf-select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23595959" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+  padding-right: 44px;
+}
+
+.crf-hint-error { display: block; margin-top: 6px; margin-left: 12px; font-size: 12px; color: #b91c1c; }
+
+.crf-buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.crf-btn {
+  width: 150px; height: 50px; font-size: 16px; font-weight: 600; cursor: pointer;
+  color: var(--text); background: var(--card); border: none; border-radius: 25px;
+  box-shadow: var(--shadow-out); transition: all .15s ease;
+}
+.crf-btn:disabled { opacity: .6; cursor: not-allowed; }
+.crf-btn:focus { color: var(--accent); box-shadow: var(--shadow-in); }
+
+/* ===== Layout modal 2 columnas (imagen + formulario) ===== */
+.crf-modal {
+  width: min(1100px, 100%);
+  min-height: 560px;
+  background: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94,104,121,0.288);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr; /* Imagen + formulario */
+}
+
+.crf-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card);
+  padding: 24px;
+  min-height: 560px; /* o el alto que uses en el modal */
+}
+
+.crf-hero-img {
+  max-width: 70%;     /* controla el ancho máximo del logo */
+  max-height: 70%;    /* y el alto máximo relativo al panel */
+  object-fit: contain;
+  height: auto;
+  width: auto;
+  opacity: 0;
+  animation: fadeIn .6s ease forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.crf-pane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* La tarjeta dentro del modal no necesita sombra */
+.crf-card {
+  width: min(560px, 100%);
+  padding: 28px 22px;
+  background: var(--card);
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+/* Responsive: en móviles la imagen va arriba */
+@media (max-width: 860px) {
+  .crf-modal {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+  .crf-hero {
+    height: 240px;
+  }
+}
+
